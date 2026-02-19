@@ -1,59 +1,145 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mi Perfil — Taller Básico de Laravel (UNAB)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicación web desarrollada en **Laravel** que presenta un perfil personal estructurado en cuatro secciones: **Perfil**, **Intereses**, **Habilidades** y **Metas**. El proyecto utiliza rutas en `web.php`, vistas Blade y CSS propio sin dependencias externas como Bootstrap.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tabla de contenidos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Requisitos del sistema](#requisitos-del-sistema)
+- [Instalación](#instalación)
+  - [Opción A — Clonar con Git](#opción-a--clonar-con-git)
+  - [Opción B — Descargar ZIP](#opción-b--descargar-zip)
+- [Ejecución del proyecto](#ejecución-del-proyecto)
+  - [Servidor integrado de Laravel (recomendado)](#servidor-integrado-de-laravel-recomendado)
+  - [XAMPP / Apache (alternativa)](#xampp--apache-alternativa)
+- [Rutas disponibles](#rutas-disponibles)
+- [Estructura de archivos](#estructura-de-archivos)
+- [Solución de problemas](#solución-de-problemas)
+- [Autor](#autor)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Requisitos del sistema
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Herramienta | Versión mínima | Notas |
+|---|---|---|
+| PHP | 8.1 | Incluir extensiones: `mbstring`, `xml`, `bcmath`, `curl`, `zip` |
+| Composer | Cualquiera reciente | [getcomposer.org](https://getcomposer.org) |
+| Servidor local | — | `php artisan serve` o XAMPP/WAMP/Laragon |
+| Node.js + NPM | Cualquiera reciente | Opcional, solo si se usan assets compilados |
+| Git | Cualquiera reciente | Opcional, solo para clonar el repositorio |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Instalación
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Opción A — Clonar con Git
+```bash
+# 1. Clonar el repositorio
+git clone <URL_DEL_REPOSITORIO>
 
-### Premium Partners
+# 2. Entrar a la carpeta del proyecto
+cd nombre-del-proyecto
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 3. Instalar dependencias de PHP
+composer install
 
-## Contributing
+# 4. Crear el archivo de entorno
+cp .env.example .env          # Linux / macOS / Git Bash
+# copy .env.example .env      # Windows CMD
+# Copy-Item .env.example .env # Windows PowerShell
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 5. Generar la clave de la aplicación
+php artisan key:generate
+```
 
-## Code of Conduct
+### Opción B — Descargar ZIP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Descarga el proyecto como archivo `.zip` desde el repositorio.
+2. Descomprime el contenido en una carpeta local (por ejemplo: `Documentos/mi-perfil-laravel/`).
+3. Abre una terminal dentro de esa carpeta y ejecuta:
+```bash
+composer install
 
-## Security Vulnerabilities
+cp .env.example .env          # Linux / macOS / Git Bash
+# copy .env.example .env      # Windows CMD
+# Copy-Item .env.example .env # Windows PowerShell
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+php artisan key:generate
+```
 
-## License
+#### Instalación de PHP en Linux (Ubuntu / Debian)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Si aún no tienes PHP instalado en tu sistema:
+```bash
+sudo apt update
+sudo apt install php php-cli php-mbstring php-xml php-bcmath php-curl php-zip unzip curl
+
+# Instalar Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+```
+
+En Windows se recomienda instalar PHP mediante [XAMPP](https://www.apachefriends.org) o [Laragon](https://laragon.org), y Composer desde [getcomposer.org/Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe).
+
+---
+
+## Ejecución del proyecto
+
+### Servidor integrado de Laravel (recomendado)
+```bash
+php artisan serve
+```
+
+La aplicación quedará disponible en `http://127.0.0.1:8000`. Para detener el servidor presiona `Ctrl + C`.
+
+### XAMPP / Apache (alternativa)
+
+1. Coloca la carpeta del proyecto dentro de `htdocs/` (XAMPP) o el directorio raíz de tu servidor.
+2. Configura el servidor para que el *document root* apunte a `nombre-del-proyecto/public/`.
+3. Accede desde el navegador:
+```
+http://localhost/nombre-del-proyecto/public/perfil
+```
+
+---
+
+## Rutas disponibles
+
+| Ruta | Vista Blade | Descripción |
+|---|---|---|
+| `/perfil` | `perfil.blade.php` | Información general del perfil |
+| `/perfil/intereses` | `intereses.blade.php` | Intereses y pasatiempos |
+| `/perfil/habilidades` | `habilidades.blade.php` | Habilidades técnicas y blandas |
+| `/perfil/metas` | `metas.blade.php` | Metas a corto y largo plazo |
+
+---
+
+## Estructura de archivos
+```
+nombre-del-proyecto/
+├── routes/
+│   └── web.php                   # Definición de rutas del proyecto
+├── resources/
+│   └── views/
+│       ├── perfil.blade.php
+│       ├── intereses.blade.php
+│       ├── habilidades.blade.php
+│       └── metas.blade.php
+└── public/
+    └── css/
+        └── estilos.css           # Estilos CSS propios (sin Bootstrap)
+```
+
+Las vistas enlazan la hoja de estilos mediante el helper `asset()` de Laravel:
+```html
+<link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+```
+
+## Autor
+
+**Tomás Enrique Urieles Chuscano**  
+Taller introduccion a laravel de la asignatura Backend — UNAB  
+Fecha: 2026-02-18
